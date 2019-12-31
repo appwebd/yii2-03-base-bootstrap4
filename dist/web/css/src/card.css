@@ -1,0 +1,8 @@
+.card-header-background-login {
+    background: var(--status-bar-background);
+    color: white;
+}
+.card-header-background-error {
+    background: black;
+    color: white;
+}
