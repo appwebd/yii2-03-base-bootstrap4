@@ -13,7 +13,7 @@ return [
 //    'dsn' => 'mysql:host=172.22.0.2;dbname=db_base',
     'dsn' => 'mysql:host=localhost;dbname=db_base',
     'username' => 'root',
-    'password' => 'dinero3645',
+    'password' => 'password',
     'charset' => 'utf8',
 
     // Schema cache options (for production environment)

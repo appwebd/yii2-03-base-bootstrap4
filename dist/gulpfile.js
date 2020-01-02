@@ -45,6 +45,7 @@ function concatenation(cb) {
         './web/css/src/font-definition.css',
         './web/css/src/sidebar-definition.css',
         './web/css/src/general.css',
+        './web/css/src/glyphicon.css',
 //        './web/css/src/header.css',
 //        './web/css/src/navigation.css',
         './web/css/src/grid.css',

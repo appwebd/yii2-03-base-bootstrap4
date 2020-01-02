@@ -20,6 +20,8 @@ use app\models\search\ControllersSearch;
 use app\models\search\ProfileSearch;
 use yii\grid\GridView;
 use yii\helpers\Html;
+use app\models\queries\Bitacora;
+use \app\components\UiButtons;
 
 /* @var object $searchModelPermission app\models\search\PermissionSearch */
 /* @var object $dataProviderPermission yii\data\ActiveDataProvider */
@@ -32,7 +34,10 @@ $this->params[BREADCRUMBS][] = $this->title;
 
 echo Html::beginForm(['permission/index'] );
 
-UiComponent::cardHeader(
+$common = new Common();
+$uiButtons = new UiButtons();
+$uicomponent = new UiComponent();
+$uicomponent->cardHeader(
     Permission::ICON,
     ' white ',
     $this->title,
@@ -41,8 +46,8 @@ UiComponent::cardHeader(
 //$controller_id = 1;
 try {
     echo GridView::widget([
-        'dataProvider' => $dataProviderPermission,
-        'filterModel' => $searchModelPermission,
+        'dataProvider' => $dataProvider,
+        'filterModel' => $searchModel,
         'layout' => GRIDVIEW_LAYOUT,
         'filterSelector' => 'select[name="per-page"]',
         'tableOptions' => [STR_CLASS => GRIDVIEW_CSS],
@@ -77,9 +82,10 @@ try {
                 ATTRIBUTE => Permission::ACTION_PERMISSION,
                 OPTIONS => [STR_CLASS => COLSM1],
                 VALUE => function ($model) {
+                    $uiComponent = new UiComponent();
                     $url = 'permission/toggle';
                     return Html::a(
-                        '<span class="' . UiComponent::yesOrNoGlyphicon($model->action_permission) . '"></span>',
+                        '<span class="' . $uiComponent->yesOrNoGlyphicon($model->action_permission) . '"></span>',
                         $url,
                         [
                             'title' => Yii::t('yii', 'Toggle value active'),
@@ -96,41 +102,32 @@ try {
 
             [
                 STR_CLASS => GRID_ACTIONCOLUMN,
-                BUTTONS => UiComponent::buttonsActionColumn(),
+                BUTTONS => $uiButtons->buttonsActionColumn(),
                 'contentOptions' => [STR_CLASS => 'GridView'],
                 HEADER => UiComponent::pageSizeDropDownList($pageSize),
                 'headerOptions' => ['style' => 'color:#337ab7'],
-                TEMPLATE => Common::getProfilePermissionString('111'),
+                TEMPLATE => $common->getProfilePermissionString('111'),
             ]
         ]
     ]);
 } catch (Exception $exception) {
-    BaseController::bitacoraAndFlash(
-        Yii::t(
-            'app',
-            ERROR_MODULE,
-            [
-                MODULE => 'app\views\permission\index::GridView::widget',
-                ERROR => $exception
-            ]
-        ),
+    $bitacora = new Bitacora();
+    $bitacora->registerAndFlash(
+        $exception,
+        'app/views/permission::GridView::widget',
         MSG_ERROR
     );
 }
 
 try {
-    $strButtons = UiComponent::buttonsAdmin('111', false);
-    UiComponent::cardFooter($strButtons);
+
+    $strButtons = $uiButtons->buttonsAdmin('111', false);
+    $uicomponent->cardFooter($strButtons);
 } catch (Exception $exception) {
-    BaseController::bitacora(
-        Yii::t(
-            'app',
-            ERROR_MODULE,
-            [
-                MODULE => 'app\views\permission\index::buttonsAdmin::widget',
-                ERROR => $exception
-            ]
-        ),
+    $bitacora = new Bitacora();
+    $bitacora->register(
+        $exception,
+        'app/views/permission',
         MSG_ERROR
     );
 }

@@ -34,17 +34,21 @@ echo HTML_WEBPAGE_OPEN;
 
 echo Html::beginForm(['user/index'], 'post');
 
+$uiButtons = new UiButtons();
+$common = new Common();
+
 $uiComponent = new UiComponent();
-$uiComponent->headerAdmin(
+$uiComponent->cardHeader(
     'user',
+    ' white',
     $this->title,
     Yii::t('app', 'This view permit Create a new User, update or delete information related of user'),
-    'user',
     '111',
     false
 );
 
 try {
+
     echo GridView::widget(
         [
             'dataProvider' => $dataProviderUser,
@@ -85,19 +89,19 @@ try {
                     FORMAT => 'raw'
                 ],
                 [
-                    'buttons' => UiButtons::buttonsActionColumn(),
+                    'buttons' => $uiButtons->buttonsActionColumn(),
                     'contentOptions' => [STR_CLASS => 'GridView'],
                     HEADER => UiComponent::pageSizeDropDownList($pageSize),
                     'headerOptions' => ['style' => 'color:#337ab7'],
-                    'class'=> yii\grid\ActionColumn::className(),
-                    TEMPLATE => Common::getProfilePermissionString(),
+                    'class'=> \yii\grid\ActionColumn::className(),
+                    TEMPLATE => Common::getProfilePermissionString('111'),
                 ]
             ]
         ]
     );
 } catch (Exception $exception) {
     $bitacora = new Bitacora();
-    $bitacora->register(
+    $bitacora->registerAndFlash(
         $exception,
         'app\views\User\index::GridView',
         MSG_ERROR

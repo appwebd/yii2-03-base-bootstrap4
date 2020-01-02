@@ -74,9 +74,11 @@ echo $form->field($model, Profile::ACTIVE)->checkbox(
 echo BREAK_LINE;
 
 echo $form->errorSummary($model, array(STR_CLASS => "error-summary"));
-echo HTML_DIV_CLOSEX2;
+
 $uiButtons = new UiButtons();
-$uiButtons->buttonsCreate(3);
+$buttons = $uiButtons->buttonsCreate(3);
+$uiComponent->cardFooter($buttons);
+echo HTML_DIV_CLOSEX2;
 
 ActiveForm::end();
 

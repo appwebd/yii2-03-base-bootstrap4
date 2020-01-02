@@ -30,8 +30,9 @@ $this->params[BREADCRUMBS][] = ['label' => $this->title, 'url' => ['index']];
 echo HTML_WEBPAGE_OPEN;
 
 $uiComponent = new UiComponent();
-$uiComponent->header(
+$uiComponent->cardHeader(
     'user',
+    'white',
     $this->title,
     Yii::t('app', 'This view permit view detailed information of User')
 );
@@ -66,8 +67,15 @@ try {
     ]);
 } catch (Exception $exception) {
     $bitacora = new Bitacora();
-    $bitacora->register($exception, '@app\views\User\view::DetailView', MSG_ERROR);
+    $bitacora->register(
+        $exception,
+        '@app\views\User\view::DetailView',
+        MSG_ERROR
+    );
 }
+
 $buttons = new UiButtons();
-$buttons->buttonsViewBottom($model);
+$strButtons= $buttons->buttonsViewBottom($model);
+$uiComponent->cardFooter($strButtons);
+
 echo HTML_WEBPAGE_CLOSE;

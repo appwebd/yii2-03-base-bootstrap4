@@ -28,7 +28,7 @@ $this->params[BREADCRUMBS][] = Yii::t('app', $titleView);
 echo HTML_WEBPAGE_OPEN;
 
 $uiComponent = new UiComponent();
-$uiComponent->header(
+$uiComponent->cardHeader(
     'user',
     $this->title,
     Yii::t(

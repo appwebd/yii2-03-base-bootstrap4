@@ -25,6 +25,7 @@ defined('ACTION_UPDATE') || define('ACTION_UPDATE', 'update');
 defined('ACTION_VIEW')   || define('ACTION_VIEW', 'view');
 defined('ACTIVE') || define('ACTIVE', 'active');
 defined('ALLOW')   || define('ALLOW', 'allow');
+
 defined('ATTRIBUTE') || define('ATTRIBUTE', 'attribute');
 defined('ATTRIBUTES') || define('ATTRIBUTES', 'attributes');
 defined('AUTOCOMPLETE') || define('AUTOCOMPLETE', 'autocomplete');
@@ -72,6 +73,8 @@ defined('HTML_OPTION') || define('HTML_OPTION', '<option>');
 defined('HTML_ROW_OPEN_COL_SM_4') || define('HTML_ROW_OPEN_COL_SM_4', '<div class="columns"><div class="column is-4">');
 defined('HTML_SPACEX2') || define('HTML_SPACEX2', '&nbsp; &nbsp;');
 defined('HTML_WEBPAGE_CLOSE') || define('HTML_WEBPAGE_CLOSE', '</div>');
+defined('HTML_ROW_DIV6') || define('HTML_ROW_DIV6', '<div class="row"><div class="col-sm-6">');
+defined('HTML_DIV_CLOSE_DIV6_OPEN') || define('HTML_DIV_CLOSE_DIV6_OPEN', '</div><div class="col-sm-6">');
 
 defined('HTML_WEBPAGE_CLOSE_OPEN_COL_SM_8') || define('HTML_WEBPAGE_CLOSE_OPEN_COL_SM_8', '</div><div class="col-sm-8 stickySidebar">');
 defined('HTML_WEBPAGE_CLOSE_OPEN_COL_SM_4') || define('HTML_WEBPAGE_CLOSE_OPEN_COL_SM_4', '</div><div class="col-sm-4 stickySidebar">');
@@ -123,6 +126,8 @@ defined('STICKY_CLOSE') || define('STICKY_CLOSE', '</div> </div>');
 defined('STR_FA_CHECK') || define('STR_FA_CHECK', 'fa-check');
 defined('STR_CLASS') || define('STR_CLASS', 'class');
 defined('STR_DEFAULT') || define('STR_DEFAULT', 'default');
+defined('STR_SAVE') || define('STR_SAVE', 'save');
+
 defined('STRING') || define('STRING', 'string');
 defined('SUCCESS') || define('SUCCESS', 'success');
 defined('TABINDEX') || define('TABINDEX', 'tabindex');

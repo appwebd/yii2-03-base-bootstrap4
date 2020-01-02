@@ -15,6 +15,7 @@ use app\components\UiComponent;
 use app\controllers\BaseController;
 use app\models\Controllers;
 use yii\grid\GridView;
+use app\models\queries\Bitacora;
 
 /* @var $this yii\web\View */
 /* @var $searchModel app\models\search\ControllersSearch */
@@ -22,11 +23,10 @@ use yii\grid\GridView;
 
 $this->title = Yii::t('app', Controllers::TITLE);
 $this->params[BREADCRUMBS][] = $this->title;
-
-UiComponent::cardHeader(
+$uicomponent = new UiComponent();
+$uicomponent->cardHeader(
     Controllers::ICON,
     'is-white',
-    'Controllers',
     $this->title,
     Yii::t('app', 'This view recollect all the controllers that exists in this web application'),
     '000',
@@ -82,14 +82,12 @@ try {
         ]
     ]);
 } catch (Exception $errorexception) {
-    BaseController::bitacora(
-        Yii::t(
-            'app',
-            'Failed to show information, error: {error}',
-            ['error' => $errorexception]
-        ),
+    $bitacora = new Bitacora();
+    $bitacora->register(
+        $exception,
+        'app/views/logs/Controllers',
         MSG_ERROR
     );
 }
 
-UiComponent::cardFooter('');
+$uicomponent->cardFooter('');

@@ -263,7 +263,7 @@ class BaseController extends Controller
      *
      * @return array|mixed
      */
-    public function pageSize()
+    public static function pageSize()
     {
 
         $session = Yii::$app->session;

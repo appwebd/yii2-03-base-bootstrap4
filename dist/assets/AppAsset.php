@@ -23,7 +23,7 @@ class AppAsset extends AssetBundle
         ['css/style.min.css', 'media' => 'all', 'type' => 'text/css'],
     ];
     public $js = [
-        ['js/javascript-distr.min.js', 'async' => true] // or defer
+        ['js/javascript-distr.min-min.js', 'async' => true] // or defer
     ];
     public $depends = [
         'yii\web\YiiAsset',
